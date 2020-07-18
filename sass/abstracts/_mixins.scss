@@ -1,0 +1,47 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin absoCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/*
+ORDER TO WRITE MEDIA QUERIES: Base + typography > general layout + grid > Page layouts > Components
+*/
+//1em = 16px
+
+@mixin respond($breakpoints) {
+  @if $breakpoints == phone {    // 0 -> 600px
+    @media (max-width: 37.5em) {
+      @content
+    };
+  }
+  @if $breakpoints == tab-port { // 601 -> 900px
+    @media (max-width: 57.25em) {
+      @content
+    };
+  }
+  @if $breakpoints == tab-land {   //901px -> 1200px
+    @media (max-width: 75em) {
+      @content
+    };
+  }
+  @if $breakpoints == big-desktop {   //1800 and above
+    @media (min-width: 112.5em) {
+      @content
+    };
+  }
+}
+
+@mixin prefix($name, $value) {
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$vendor}#{$name}: #{$value};
+  }
+}

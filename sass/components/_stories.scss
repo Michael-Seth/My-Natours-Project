@@ -1,0 +1,76 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 2rem 3rem rgba($color-black, .1);
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 7rem;
+  transform: skewX(-12deg);
+  font-size: $default-font-size;
+  position: relative;
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-2rem) skewX(12deg);
+  }
+
+  &__image {
+    height: 100%;
+    transform: translateX(-3.5rem) scale(1.2);
+    transition: all 0.4s ease-out;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.4s ease-out;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__image {
+    transform: translateX(-3.5rem) scale(1);
+    filter: blur(2px) brightness(50%);
+  }
+  @include respond (tab-port) {
+    transform: skewX(0);
+    width: 100%;
+    padding: 4rem;
+
+    &__shape {
+      width: 15rem;
+      height: 15rem;
+      float: left;
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      shape-outside: circle(50% at 50% 50%);
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+      transform: translateX(-2rem) skewX(0);
+    }
+
+    &__text {
+      transform: skewX(0);
+    }
+  }
+}
